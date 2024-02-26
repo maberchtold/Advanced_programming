@@ -46,10 +46,54 @@ public class Zeichen {
         return retPositions;
     }
 
+    private int getFirstPositionWhereCharNotMatching(char userCharInput){
+        int returnPosition = -1;
+
+        for (int i = 0; i < zeichen.length; i++){
+            if (zeichen[i] != userCharInput && returnPosition < 0){
+                returnPosition = i;
+            }
+        }
+
+        return returnPosition;
+    }
+
+    private boolean setCustomChar(char userCharInput, int userPositionInput){
+        boolean retBool = false;
+
+        if(userPositionInput < 0 || userPositionInput > zeichen.length - 1){
+            retBool = false;
+        }else {
+            zeichen[userPositionInput] = userCharInput;
+            retBool = true;
+        }
+        return retBool;
+    }
+
+    private int countChar(){
+        char userCharInput = 'a';
+        int charCount = 0;
+        Scanner scanner = new Scanner(System.in).useLocale(Locale.US);
+        System.out.print("Geben Sie einen char ein: ");
+        userCharInput = scanner.nextLine().charAt(0);
+
+        for (int i = 0; i < zeichen.length; i++){
+            if (zeichen[i] == userCharInput){
+                charCount++;
+            }
+        }
+
+        return charCount;
+    }
+
     public void menu(){
         boolean programRunning = true;
         int userInput = 0;
+        int position = 0;
+        int charCount = 0;
         char userCharInput = 'a';
+        int userPositionInput = 0;
+        boolean successBool = false;
         String positions;
         Scanner scanner = new Scanner(System.in).useLocale(Locale.US);
 
@@ -59,7 +103,7 @@ public class Zeichen {
             System.out.println("3) Erstes anderes Zeichen suchen");
             System.out.println("4) Zeichen ändern");
             System.out.println("5) Häufigkeit");
-            System.out.println("1) Programm beenden");
+            System.out.println("6) Programm beenden");
             System.out.print("Wählen Sie: ");
             userInput = scanner.nextInt();
             scanner.nextLine();
@@ -78,12 +122,35 @@ public class Zeichen {
                     System.out.println();
                     break;
                 case 3:
+                    System.out.print("Geben Sie einen char ein: ");
+                    userCharInput = scanner.nextLine().charAt(0);
+                    position = getFirstPositionWhereCharNotMatching(userCharInput);
+                    System.out.println("Die erste Position an welcher das Zeichen nicht steht ist:");
+                    System.out.println(position);
+                    System.out.println();
                     break;
                 case 4:
+                    System.out.print("Geben Sie einen char ein: ");
+                    userCharInput = scanner.nextLine().charAt(0);
+                    System.out.print("Geben Sie eine Position ein, an welcher der char gesetzt werden soll: ");
+                    userPositionInput = scanner.nextInt();
+                    scanner.nextLine();
+
+                    successBool = setCustomChar(userCharInput, userPositionInput);
+                    if (successBool){
+                        System.out.println("Der Char wurde erfolgreich gesetzt");
+                    }else{
+                        System.out.println("Die Position liegt auserhalb des Array index.");
+                    }
+                    System.out.println();
                     break;
                 case 5:
+                    charCount = countChar();
+                    System.out.println("Der char kommt "+charCount+" mal im Array vor!");
+                    System.out.println();
                     break;
                 case 6:
+                    programRunning = false;
                     break;
                 default:
                     System.out.println();
