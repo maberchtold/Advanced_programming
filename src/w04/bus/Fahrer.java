@@ -5,7 +5,7 @@ public class Fahrer extends Passagier{
     private int berufserfahrung;
 
     public Fahrer(String name, String vorname, int gehalt, int berufserfahrung) {
-        super(name, vorname);
+        super(name, vorname, false);
         this.gehalt = gehalt;
         this.berufserfahrung = berufserfahrung;
     }

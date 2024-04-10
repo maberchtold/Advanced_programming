@@ -30,14 +30,21 @@ public class Bus {
         return successBool;
     }
 
-    public boolean ride(){
-        boolean successBool = true;
+    public int ride(){
+        int money = 0;
         for(int i = 0; i < busfahrer.length; i++){
             if (busfahrer[i] == null){
-                successBool = false;
+                throw new NotReadyForDepartureException();
             }
         }
-        return successBool;
+        for (int i = 0; i < passagiere.length; i++) {
+            for (int j = 0; j < passagiere[i].length; j++) {
+                if (passagiere[i][j] != null){
+                    money += passagiere[i][j].getPayedPrice();
+                }
+            }
+        }
+        return money;
     }
 
     @Override
