@@ -1,8 +1,8 @@
-package w09_Rekursion;
+package w10_Rekursion;
 
 public class PermutationCharArr {
     public static void main(String[] args) {
-        char[] charArr = {'A','B','C','D'};
+        char[] charArr = {'A','B','C'};
 
         permutation(charArr);
     }

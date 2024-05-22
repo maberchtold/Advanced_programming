@@ -2,7 +2,7 @@ package w09_Rekursion;
 
 public class Hanoi {
     public static void main(String[] args) {
-        int n = 3;
+        int n = 60;
         //s = source, t = temp, d = destination
         hanoi(n,1,3,2);
     }
