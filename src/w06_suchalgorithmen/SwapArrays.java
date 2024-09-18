@@ -1,4 +1,4 @@
-package w06;
+package w06_suchalgorithmen;
 
 import java.util.Random;
 
